@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Zoo on Web</title>
+    <link rel="stylesheet" href="scholarly.min.css">
+    <script src="scholarly.min.js"></script>
+  </head>
+  <body prefix="schema: http://schema.org" xsd="http://www.w3.org/2001/XMLSchema#" sa="https://ns.science.ai/">
+    <header>
+      <h1>Zoo on Web</h1>
+    </header>
+    <h2> Cuprins:</h2>
+    
+    <div typeof="sa:AuthorsList" role="contentinfo">
+      <dl>
+        <dt>Authors:</dt>
+        <dd> <a href="https://github.com/ancadorneanu">Dorneanu Anca</a> </dd>
+        <dd> <a href="https://github.com/dand561"> Dragomirescu Dan </a> </dd>
+        <dd> <a href="https://github.com/RaresMunteanu"> Munteanu Rares</a> </dd>
+      </dl>
+    </div>
+
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+      <h2>Abstract</h2>
+      <p>
+       Proiectul "Zoo on Web" reprezinta o aplicatie web ce gestioneaza informatiile ce vizeaza animalele gazduite intr-o gradina zoologica. Se redau, intr-o maniera facila si accesibila, informatii legate de animale, precum: denumire stiintifica, denumire populara, specie, familia din care face parte, origine, habitat, mod de alimentatie, descriere, statut, proprietati specifice, etc.
+      </p>
+      </p>
+      De asemenea, acest proiect are in vedere mecanisme de cautare/filtrare/afisare multi-criteriala si importarea/exportarea datelor in format JSON si XML.
+      </p>
+    </section>
+    <section typeof="sa:MaterialAndMethods" id="introduction" role="doc-introduction">
+      <h2>Introducere</h2>
+      <p>Proiectul propune o solutie pentru gestionarea eficienta si rapida (prin prisma tehnologiilor folosite) a informatiilor despre animalele dintr-o gradina zoologica. Accentul se pune pe cautarea/filtrarea multi-criteriala.
+      </p>
+
+    <section id="steps" role="doc-steps">
+      <h2>Etapele dezvoltarii proiectului</h2>
+      <ol>
+        <li> Crearea arhitecturii aplicatiei</li>
+        <li> Modelarea bazei de date </li>
+        <li> Front-end: crearea paginilor HTML si stilizarea acestora utilizand CSS</li>
+        <li> Back-end: design-ul si crearea claselor PHP </li>
+        <li> Utilizarea API-urilor: Google Calendar & PayPal</li>
+        <li> Adaugarea functionalitatilor utilizand JavaScript si AJAX</li>
+        <li> Testare </li>
+      </ol>
+    </section>
+
+    <section id="technologies" role="doc-technologies">
+      <h2> Tehnologii utilizate</h2>
+      <h4> Front-end </h4> 
+      <p>
+        Pe partea de front-end, tehnologiile folosite sunt: HTML5, CSS3, JavaScript. Tot la acest capitol, se va furniza si un search autocomplete folosind tehnologia AJAX.
+      </p>
+      <h4> Back-end </h4>
+      <p>
+        Pe partea de back-end, vom utiliza PHP.
+      </p>
+      <p>
+       De asemenea, avand in vedere ca se pune accentul pe cautare (rapiditate si eficienta), vom folosi Redis ("in-memory data structure store, used as database"). Pentru ca acesta se bazeaza pe date de tipul cheie-valoare, deci <b>NU</b> este relational (NoSQL), acesta functioneaza intr-un mod foarte rapid. 
+      </p>
+      <p>
+       De mentionat este ca, in cazul in care vom intampina probleme in realizarea back-end-ului in aceasta maniera, vom apela la MySQL in loc de Redis.
+      </p>
+      <h4> API: Application Program Interface </h4>
+      <p>
+        In ceea ce priveste API-urile, vom utiliza Google Calendar API si PayPal API.
+      </p>
+    </section>
+
+    <section id="structure">
+      <h2>Arhitectura aplicatiei</h2>
+      <p> Pe pagina principala (home page), avem un navbar cu butoane spre alte pagini: "login/sign up", "categories", "calendar", "contact", "buy tickets", astfel incat fiecare buton directioneaza catre o pagina separata ce gestioneaza o anumita functionalitate.
+        <h4> Login/Sign up </h4>
+        <p>
+          Login-ul ofera functionalitatea de a te autentifica drept administrator (ce poate adauga/sterge un animal sau o categorie, modifica anumite date legate de un animal/categorie) sau ca donator (in caz ca cineva doreste sa faca o donatie financiara via PayPal).
+        </p>
+        <p>
+          Tot pe aceasta pagina se va afla si un formular de sign up pentru donatori.
+        </p>  
+        <h4>Categories </h4>
+        <p>Pe aceasta pagina se vor gasi categoriile de animale, in functie de niste criterii care mai raman de stabilit (in principiu, vor fi criteriile cerute in cazul cautarii).</p>
+        <h4>Calendar</h4>
+        <p>Folosind Google Calendar API, un vizitator poate vedea anumite evenimente ce au loc in cadrul gradinii zoolgice (de exemplu dresarea unui leu intr-o anumita zi).</p>
+        <h4>Buy tickets</h4>
+        <p>O pagina care ofera functionalitatea de a cumpara un bilet. Biletul este achitat prin intermediul PayPal API.</p>
+        <h4>Contact</h4>
+        <p>Pagina de contact, unde se vor gasi informatii precum adresa, numar de telefon, email, etc.</p>
+    </section>
+
+    <section id="database">
+      <h2>Stocarea datelor: Redis</h2>
+      <p> Orice user si orice animal, respectiv orice detaliu despre acestea, vor fi stocate sub forma de obiecte separate. Din moment ce nu exista tabele, nu vor exista generalizari/abstractizari asupra animalelor.
+      <p>Exemplu utilizare: </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#person-example" id="person-example">
+          <pre><code>     
+            hmset lion:1 name "Lion" scientific_name "Panthera Leo" origin "Africa" class "Mammalia" family "Felidae" species "Panthera Leo" status "vulnerable"
+            OK
+
+            hmset elephant:2 name "Elephant" scientific_name "Loxodonta" origin "Africa" class "Mammalia" family "Elephantidae" species "Loxodonta africana" status "vulnerable"
+            OK
+
+            // indexam ceea ce vrem sa cautam
+            sadd status:vulnerable 1 2
+            sadd origin:Africa 1 2
+            sadd name:Lion 1 
+
+            // cautare multi-criteriala - se returneaza numarul index-ului ce satisface parametrii
+            sinter status:vulnerable origin:Africa // se va returna: 1 2
+
+            // cautare simpla, cu un singur parametru
+            hget lion:1 name // returneaza "Lion"
+
+
+        </figure>
+    </section>
+      
+    <section typeof="sa:ReferenceList" id="serv" role="doc-references">
+        <h2>Servicii</h2>  
+        <h4>Github</h4>
+          <p>
+            GitHub este un serviciu de gazduire web pentru proiecte de dezvoltare a software-ului care utilizeaza sistemul de control al versiunilor Git. GitHub ofera planuri tarifare pentru depozite private, si conturi gratuite pentru proiecte open source.
+          </p>
+        <h4>Scholarly HTML</h4>
+          <p>
+            Scholarly HTML este un format de date 'domain-specific', ce utilizeaza Scholarly HTML, si e bazat in totalitate pe 'open standards', ce permite schimbul de articole stiintifice intr-un mod care este compatibil cu browsere 'off-the-shelf'.
+          </p>
+     </section>
+  </body>
+</html>
