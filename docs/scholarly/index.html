@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Zoo on Web</title>
+    <link rel="stylesheet" href="scholarly.css">
+    <link rel="stylesheet" href="node_modules/prismjs/themes/prism-coy.css">
+    <script src="node_modules/prismjs/prism.js" defer></script>
+  </head>
+
+  <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
+
+    <header>
+      <p class="title">Zoo on Web</p>
+      <p class="subtitle">Visit our zoo.. virtually.</p>
+    </header>
+
+    <article id="what" typeof="schema:ScholarlyArticle" resource="#">
+      <h1>What is Zoo on Web?</h1>
+      <section>
+        <ol>
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author" href="http://github.com/ancadorneanu" typeof="schema:Person">
+              <span property="schema:givenName">Anca</span>
+              <span property="schema:familyName">Dorneanu</span>
+            </a>
+          </li>
+
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author" href="http://github.com/dand561" typeof="schema:Person">
+              <span property="schema:givenName">Dan</span>
+              <span property="schema:familyName">Dragomirescu</span>
+            </a>
+          </li>
+
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author" href="http://github.com/RaresMunteanu" typeof="schema:Person">
+              <span property="schema:givenName">Rares</span>
+              <span property="schema:familyName">Munteanu</span>
+            </a>
+          </li>
+        </ol>
+      </section>
+
+      <section typeof="sa:Abstract" id="abstract">
+        <h2>Abstract</h2>
+        <p>
+          Proiectul "Zoo on Web" reprezinta o aplicatie web ce gestioneaza informatiile ce vizeaza animalele gazduite intr-o gradina zoologica. Se redau, intr-o maniera facila si accesibila, informatii legate de animale, precum: denumire stiintifica, denumire populara, specie, familia din care face parte, origine, habitat, mod de alimentatie, descriere, statut, proprietati specifice, etc.
+        </p>
+        </p>
+          De asemenea, acest proiect are in vedere mecanisme de cautare/filtrare/afisare multi-criteriala si importarea/exportarea datelor in format JSON si XML.
+        </p>
+      </section>
+
+      <section typeof="sa:MaterialsAndMethods" id="introduction">
+        <h2>Introducere</h2>
+        <p>
+          Proiectul propune o solutie pentru gestionarea eficienta si rapida (prin prisma tehnologiilor folosite) a informatiilor despre animalele dintr-o gradina zoologica. Accentul se pune pe cautarea/filtrarea multi-criteriala.
+        </p>
+      </section>
+
+      <section typeof="sa:Results" id="steps">
+        <h2>Etapele dezvoltarii proiectului</h2>
+        <ol>
+          <li> Crearea arhitecturii aplicatiei</li>
+          <li> Modelarea bazei de date </li>
+          <li> Front-end: crearea paginilor HTML si stilizarea acestora utilizand CSS</li>
+          <li> Back-end: design-ul si crearea claselor PHP </li>
+          <li> Utilizarea API-urilor: Google Calendar & PayPal</li>
+          <li> Adaugarea functionalitatilor utilizand JavaScript si AJAX</li>
+          <li> Testare </li>
+        </ol>
+        </section>
+
+        <section id="technologies">
+          <h3>Tehnologii utilizate</h3>
+          <h4><code> Front-end </code></h4> 
+          <p>
+            Pe partea de front-end, tehnologiile folosite sunt: HTML5, CSS3, JavaScript. Tot la acest capitol, se va furniza si un search autocomplete folosind tehnologia AJAX.
+          </p>
+          <h4><code> Back-end </code></h4>
+          <p>
+            Pe partea de back-end, vom utiliza PHP.
+          </p>
+          <p>
+           De asemenea, avand in vedere ca se pune accentul pe cautare (rapiditate si eficienta), vom folosi Redis ("in-memory data structure store, used as database"). Pentru ca acesta se bazeaza pe date de tipul cheie-valoare, deci <b>NU</b> este relational (NoSQL), acesta functioneaza intr-un mod foarte rapid. 
+          </p>
+          <p>
+           De mentionat este ca, in cazul in care vom intampina probleme in realizarea back-end-ului in aceasta maniera, vom apela la MySQL in loc de Redis.
+          </p>
+          <h4><code> API: Application Program Interface </code></h4>
+          <p>
+            In ceea ce priveste API-urile, vom utiliza Google Calendar API si PayPal API.
+          </p>
+        </section>
+
+        <section id="architecture">
+          <h3>Arhitectura aplicatiei</h3>
+          <p> 
+            Pe pagina principala (home page), avem un navbar cu butoane spre alte pagini: "login/sign up", "categories", "calendar", "contact", "buy tickets", astfel incat fiecare buton directioneaza catre o pagina separata ce gestioneaza o anumita functionalitate.
+          </p>
+
+          <h4><code> Login/Sign up </code></h4>
+          <p>
+            Login-ul ofera functionalitatea de a te autentifica drept administrator (ce poate adauga/sterge un animal sau o categorie, modifica anumite date legate de un animal/categorie) sau ca donator (in caz ca cineva doreste sa faca o donatie financiara via PayPal).
+          </p>
+          <p>
+            Tot pe aceasta pagina se va afla si un formular de sign up pentru donatori.
+          </p> 
+
+          <h4><code> Categories </code></h4>
+          <p>
+            Pe aceasta pagina se vor gasi categoriile de animale, in functie de niste criterii care mai raman de stabilit (in principiu, vor fi criteriile cerute in cazul cautarii).
+          </p>
+
+          <h4><code> Calendar </code></h4>
+          <p>
+            Folosind Google Calendar API, un vizitator poate vedea anumite evenimente ce au loc in cadrul gradinii zoolgice (de exemplu dresarea unui leu intr-o anumita zi).
+          </p>
+          
+          <h4><code> Buy tickets </code></h4>
+          <p>
+            O pagina care ofera functionalitatea de a cumpara un bilet. Biletul este achitat prin intermediul PayPal API.
+          </p>
+
+          <h4><code> Contact </code></h4>
+          <p>
+            Pagina de contact, unde se vor gasi informatii precum adresa, numar de telefon, email, etc.
+          </p>
+        </section>
+
+        <section id="database">
+          <h3>Stocarea datelor: Redis</h3>
+          <p> 
+            Orice user si orice animal, respectiv orice detaliu despre acestea, vor fi stocate sub forma de obiecte separate. Din moment ce nu exista tabele, nu vor exista generalizari/abstractizari asupra animalelor.
+          </p>
+
+          <figure typeof="schema:SoftwareSourceCode">
+            <meta property="schema:bash" content="bash">
+            <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-bash">
+hmset lion:1 name "Lion" scientific_name "Panthera Leo" origin "Africa" class "Mammalia" family "Felidae" species "Panthera Leo" status "vulnerable"
+OK
+ 
+hmset elephant:2 name "Elephant" scientific_name "Loxodonta" origin "Africa" class "Mammalia" family "Elephantidae" species "Loxodonta africana" status "vulnerable"
+OK
+
+sadd status:vulnerable 1 2 //indexam ceea ce vrem sa cautam
+sadd origin:Africa 1 2
+sadd name:Lion 1 
+
+// cautare multi-criteriala
+sinter status:vulnerable origin:Africa // se va returna: 1 2
+
+// cautare simpla, cu un singur parametru
+hget lion:1 name // returneaza "Lion"
+            </code></pre>
+
+            <figcaption>
+              Un exemplu de utilizare in linia de comanda (redis-cli).
+            </figcaption>
+          </figure>
+
+          <figure typeof="schema:SoftwareSourceCode">
+            <meta property="schema:PHP" content="PHP">
+            <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-PHP">
+&lt;?php 
+  $redis->hmset("lion", array(
+  "name" => "Lion",
+  "scientific_name" => "Panthera Leo",
+  "origin" => "Africa",
+  "class" => "Mammalia",
+  "family" => "Felidae",
+  "species" => "Panthera Leo",
+  "status" => "vulnerable"));
+
+  $lion = $redis->hgetall("lion");
+  echo "All info about lion";
+  var_dump($lion);
+
+  $redis->hdel("lion:1", "scientific_name");
+?>
+            </code></pre>
+
+            <figcaption>
+              Un exemplu de utilizare in PHP.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="tasks">
+          <h3>Asignarea task-urilor</h3>
+        <ol>
+          <li>Front-end:</li>
+          <p>Implementarea paginilor (HTML, CSS): Rares Munteanu, Dan Dragomirescu</p>
+          <p>Mockups: Anca Dorneanu</p>
+
+          <li>Back-end:</li>
+          <p>Cautare si implementare arhitectura baza de date (Redis): Anca Dorneanu</p>
+
+          <li>Documentatie</li>
+          <p>Crearea documentatiei utilizand Scholarly HTML: Anca Dorneanu, Dan Dragomirescu</p>
+        </ol>
+        </section>
+
+      <section typeof="sa:Conclusion" id="conclusion">
+        <h2>Concluzie</h2>
+        <p>
+          In concluzie, Zoo on Web este un proiect interesant, ce poate ajuta la managementul unei gradini zoologice prin eficienta si rapiditate. 
+        </p>
+        <p>
+          Ne gasiti pe <a href="https://github.com/dand561/zow">Github</a>.
+        </p>
+      </section>
+
+      <section typeof="sa:ReferenceList" id="references">
+        <h2>Referinte</h2>
+        <ul>
+          <li><a href="http://scholarly.vernacular.io/">Scholarly HTML</a></li>
+          <li><a href="http://github.com/">Github</a></li>
+          <li><a href="http://stackoverflow.com/">StackOverflow</a></li>
+          <li><a href="http://profs.info.uaic.ro/~busaco/teach/courses/web/projects/xml-transform.php?pag=projects">Proiecte Tehnologii WEB</a></li>
+        </ul>
+      </section>
+    </article>
+
+    <footer>
+      <p>
+        <a href="https://github.com/dand561/zow">ZoW on Github</a>
+        •
+        <a href="www.infoiasi.ro/">FII</a>
+        •
+        <a href="http://profs.info.uaic.ro/~busaco/teach/courses/web/">Tehnologii WEB</a>
+      </p>
+    </footer>
+  </body>
+</html>
