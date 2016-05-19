@@ -1,7 +1,7 @@
 <?php
 define('DB_NAME', 'zowdatabase');
 define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'zowTW2016');
 define('DB_HOST', 'localhost');
 
 $conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
