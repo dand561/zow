@@ -1,0 +1,62 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <title>Add me!</title>
+    <link rel="stylesheet" type="text/css" href="css/add.css">
+  </head>
+
+  <body bgcolor="#E3E3E3">
+    <div class="form-style-5">
+      <form action="../application/add_animal.php" method="post"/>
+        <fieldset>
+            <legend> Info </legend>
+
+            <input type="text" name="popular_name" placeholder="Popular name"  required>
+            <input type="text" name="scientific_name" placeholder="Scientific name">
+            <input type="text" name="family" placeholder="Family">
+
+            <textarea name="description" placeholder="Description"/></textarea>
+
+            <input type="text" name="origin" placeholder="Origin">
+
+            <label for="status"> Conservation status </label>
+            <select id="status" name="status">
+                <option value="extinct">Extinct</option>
+                <option value="threatened">Threatened</option>
+                <option value="least_concern">Least concern</option>
+            </select> 
+
+            <input type="text" name="climate" placeholder="Climate">
+            <input type="text" name="dangerousness" placeholder="Dangerousness">
+
+            <textarea name="special_prop" placeholder="Special properties"></textarea>
+            
+            <textarea name="related_species" placeholder="Related species"></textarea>
+
+            <textarea name="enemies" placeholder="Natural enemies"></textarea>
+
+            <label for="nourishment"> Nourishment </label>
+            <select id="nourishment" name="nourishment">
+                <option value="carnivore">Carnivore</option>
+                <option value="omnivore">Omnivore</option>
+                <option value="herbivore">Herbivore</option>
+            </select> 
+
+            <input type="text" name="breeding" placeholder="Breeding">
+            <input type="text" name="fur" placeholder="Fur type">
+
+            <label for="training"> Training </label>
+            <select id="training" name="training">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select> 
+
+        </fieldset>
+
+        <input type="submit" value="Submit" />
+    
+      </form>
+    
+    </div>
+  </body>
+</html>
