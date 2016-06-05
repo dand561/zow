@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Add me!</title>
+    <title>Advanced search</title>
     <link rel="stylesheet" type="text/css" href="css/add_animal.css">
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <script type="text/javascript" src="js/add_animal.js"></script>
   </head>
 
   <body bgcolor="#E3E3E3">
@@ -22,15 +21,16 @@
     </nav>
 
     <div class="form-style-5">
-      <form action="../application/add_animal.php" method="post"/>
+      <form action="../application/advanced_srch.php" method="post"/>
         <fieldset>
-            <legend> Info </legend>
+            <legend> Advanced search </legend>
 
-            <input type="text" name="popular_name" placeholder="Popular name"  required>
+            <input type="text" name="popular_name" placeholder="Popular name">
             <input type="text" name="scientific_name" placeholder="Scientific name">
 
             <label for="category"> Category </label>
             <select id="category" name="category">
+                <option selected value=""></option>
                 <option value="Bird">Bird</option>
                 <option value="Mammal">Mammal</option>
                 <option value="Reptile">Reptile</option>
@@ -38,12 +38,11 @@
 
             <input type="text" name="family" placeholder="Family">
 
-            <textarea name="description" placeholder="Description"/></textarea>
-
             <input type="text" name="origin" placeholder="Origin">
 
             <label for="status"> Conservation status </label>
             <select id="status" name="status">
+                <option selected value=""></option>
                 <option value="extinct">Extinct</option>
                 <option value="threatened">Threatened</option>
                 <option value="least_concern">Least concern</option>
@@ -52,8 +51,6 @@
             <input type="text" name="climate" placeholder="Climate">
             <input type="text" name="habitate" placeholder="Habitate">
             <input type="text" name="dangerousness" placeholder="Dangerousness">
-
-            <textarea name="special_prop" placeholder="Special properties"></textarea>
             
             <textarea name="related_species" placeholder="Related species"></textarea>
 
@@ -61,15 +58,15 @@
 
             <label for="nourishment"> Nourishment </label>
             <select id="nourishment" name="nourishment">
+                <option selected value=""></option>
                 <option value="carnivore">Carnivore</option>
                 <option value="omnivore">Omnivore</option>
                 <option value="herbivore">Herbivore</option>
             </select> 
 
-            <input type="text" name="breeding" placeholder="Breeding">
-
             <label for="fur"> Fur </label>
             <select id="fur" name="fur" onchange="furSelected(this);">
+                <option selected value=""></option>
                 <option value="no">No</option>
                 <option id="withFur" value="yes">Yes</option>
             </select> 
@@ -80,13 +77,14 @@
 
             <label for="training"> Training </label>
             <select id="training" name="training">
+                <option selected value=""></option>
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </select> 
 
         </fieldset>
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Search" />
     
       </form>
     </div>
@@ -102,6 +100,6 @@
             <a href="http://profs.info.uaic.ro/~busaco/teach/courses/web/">Web technologies</a>
         </div>
     </footer>
-
+    
   </body>
 </html>

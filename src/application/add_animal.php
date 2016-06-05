@@ -16,26 +16,19 @@ if(!$db_selected){
 	die('Cannot use ' . DB_NAME . ': ' . mysql_error());
 }
 
-$popular_name = $_POST['popular_name'];
-$scientific_name = $_POST['scientific_name'];
-$family = $_POST['family'];
-$description = $_POST['description'];
-$origin = $_POST['origin'];
-$status = $_POST['status'];
-$climate = $_POST['climate'];
-$habitate = $_POST['habitate'];
-$dangerousness = $_POST['dangerousness'];
-$special_prop = $_POST['special_prop'];
-$related_species = $_POST['related_species'];
-$enemies = $_POST['enemies'];
-$nourishment = $_POST['nourishment'];
-$breeding = $_POST['breeding'];
-$fur = $_POST['fur'];
-$fur_color = $_POST['fur_color'];
-$training = $_POST['training'];
+$fields = ["popular_name","scientific_name","category","family","description","origin","status","climate","habitate",
+	"dangerousness","special_prop","related_species","enemies","nourishment","breeding","fur","fur_color","training"];
 
-$send = "INSERT INTO `animals`(`popular_name`,`scientific_name`,`family`,`description`,`origin`,`status`,`climate`,`habitate`,`dangerousness`,`special_prop`,`related_species`,`enemies`,`nourishment`,`breeding`,`fur`,`fur_color`,`training`)
-VALUES('$popular_name','$scientific_name','$family','$description','$origin','$status','$climate','$habitate','$dangerousness','$special_prop','$related_species', '$enemies','$nourishment','$breeding','$fur','$fur_color','$training')";
+// Checking if all fields were set
+foreach ($fields as $field) {
+	if (isset($_POST[$field])){
+		$$field = $_POST[$field];
+		//$$field = mysql_real_escape_string($$field);
+    }
+}
+
+$send = "INSERT INTO `animals`(`popular_name`,`scientific_name`,`category`,`family`,`description`,`origin`,`status`,`climate`,`habitate`,`dangerousness`,`special_prop`,`related_species`,`enemies`,`nourishment`,`breeding`,`fur`,`fur_color`,`training`)
+VALUES('$popular_name','$scientific_name','$category','$family','$description','$origin','$status','$climate','$habitate','$dangerousness','$special_prop','$related_species', '$enemies','$nourishment','$breeding','$fur','$fur_color','$training')";
 
 if(!mysql_query($send)){
 	die('Error: ' . mysql_error());

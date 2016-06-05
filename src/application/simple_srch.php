@@ -1,6 +1,6 @@
 <?php
 define('DB_NAME', 'zowdatabase');
-define('DB_USER', 'drgmrsc');
+define('DB_USER', 'root');
 define('DB_PASSWORD', 'zowTW2016');
 define('DB_HOST', 'localhost');
 
@@ -15,12 +15,13 @@ $db_selected = mysql_select_db(DB_NAME, $conn);
 if(!$db_selected){
 	die('Cannot use ' . DB_NAME . ': ' . mysql_error());
 }
+
 if(isset($_POST['popular_name'])){
 	$popular_name = $_POST['popular_name'];
 }
 
 $sql_query = "SELECT * FROM `animals` WHERE popular_name LIKE '$popular_name'";
-//$sql_query = "SELECT * FROM `animals` WHERE popular_name LIKE 'LION'";
+
 $result = mysql_query($sql_query);
 
 if(!$result){
