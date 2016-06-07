@@ -58,7 +58,7 @@
         <h2>Introducere</h2>
         <p>
           Proiectul propune o solutie pentru gestionarea eficienta si rapida (prin prisma tehnologiilor folosite) a informatiilor despre animalele dintr-o gradina zoologica. Accentul se pune pe cautarea/filtrarea multi-criteriala.
-        </p>
+        </p> <br>
       </section>
 
       <section typeof="sa:Results" id="steps">
@@ -68,7 +68,7 @@
           <li> Modelarea bazei de date </li>
           <li> Front-end: crearea paginilor HTML si stilizarea acestora utilizand CSS</li>
           <li> Back-end: design-ul si crearea claselor PHP </li>
-          <li> Utilizarea API-urilor: Google Calendar & PayPal</li>
+          <li> Utilizarea API-urilor: PayPal</li>
           <li> Adaugarea functionalitatilor utilizand JavaScript si AJAX</li>
           <li> Testare </li>
         </ol>
@@ -82,122 +82,79 @@
           </p>
           <h4><code> Back-end </code></h4>
           <p>
-            Pe partea de back-end, vom utiliza PHP.
+            Pe partea de back-end, am utilizat PHP.
           </p>
           <p>
-           De asemenea, avand in vedere ca se pune accentul pe cautare (rapiditate si eficienta), vom folosi Redis ("in-memory data structure store, used as database"). Pentru ca acesta se bazeaza pe date de tipul cheie-valoare, deci <b>NU</b> este relational (NoSQL), acesta functioneaza intr-un mod foarte rapid. 
-          </p>
-          <p>
-           De mentionat este ca, in cazul in care vom intampina probleme in realizarea back-end-ului in aceasta maniera, vom apela la MySQL in loc de Redis.
+           De asemenea, pe partea ce tine de baze de date, am utilizat MySQL, impreuna cu PHP.
           </p>
           <h4><code> API: Application Program Interface </code></h4>
           <p>
-            In ceea ce priveste API-urile, vom utiliza Google Calendar API si PayPal API.
+            In ceea ce priveste API-urile, vom utiliza PayPal API.
           </p>
         </section>
 
         <section id="architecture">
           <h3>Arhitectura aplicatiei</h3>
+          <h4><code> Home </code></h4>
           <p> 
-            Pe pagina principala (home page), avem un navbar cu butoane spre alte pagini: "login/sign up", "categories", "calendar", "contact", "buy tickets", astfel incat fiecare buton directioneaza catre o pagina separata ce gestioneaza o anumita functionalitate.
+            Pe pagina principala (home page), avem un navbar cu butoane spre alte pagini: "login", "categories", "contact", astfel incat fiecare buton directioneaza catre o pagina separata ce gestioneaza o anumita functionalitate.
           </p>
 
-          <h4><code> Login/Sign up </code></h4>
+          <h4><code> Search </code></h4>
           <p>
-            Login-ul ofera functionalitatea de a te autentifica drept administrator (ce poate adauga/sterge un animal sau o categorie, modifica anumite date legate de un animal/categorie) sau ca donator (in caz ca cineva doreste sa faca o donatie financiara via PayPal).
-          </p>
-          <p>
-            Tot pe aceasta pagina se va afla si un formular de sign up pentru donatori.
+            Search-ul ofera functionalitatea de a cauta un animal intr-un mod usor (dupa nume) sau in modul avansat, dupa mai multe criterii.
           </p> 
 
           <h4><code> Categories </code></h4>
           <p>
-            Pe aceasta pagina se vor gasi categoriile de animale, in functie de niste criterii care mai raman de stabilit (in principiu, vor fi criteriile cerute in cazul cautarii).
+            Pe aceasta pagina se vor gasi categoriile de animale, dupa cum urmeaza: mamifere, reptile si pasari. 
           </p>
-
-          <h4><code> Calendar </code></h4>
-          <p>
-            Folosind Google Calendar API, un vizitator poate vedea anumite evenimente ce au loc in cadrul gradinii zoolgice (de exemplu dresarea unui leu intr-o anumita zi).
-          </p>
-          
-          <h4><code> Buy tickets </code></h4>
-          <p>
-            O pagina care ofera functionalitatea de a cumpara un bilet. Biletul este achitat prin intermediul PayPal API.
-          </p>
-
+          <p>Tot pe aceasta pagina, se pot importa date in format XML sau JSON ce vor fi inserate in baza de date sub format MySQL</p>
+  
           <h4><code> Contact </code></h4>
           <p>
             Pagina de contact, unde se vor gasi informatii precum adresa, numar de telefon, email, etc.
+            De asemenea, tot in cadrul acestei pagini, se poate face o donatie ce integreaza un API REST de la PayPal.
+            Si tot aici se va gasi un formular pentru adaugarea de sugestii.
+          </p>
+
+          <h4><code> Login </code></h4>
+          <p>
+            Login-ul ofera functionalitatea de a te autentifica drept administrator (ce poate adauga/sterge un animal sau o categorie, modifica anumite date legate de un animal/categorie) sau ca donator (in caz ca cineva doreste sa faca o donatie financiara via PayPal).
           </p>
         </section>
 
         <section id="database">
-          <h3>Stocarea datelor: Redis</h3>
+          <h3>Stocarea datelor: MySQL</h3>
           <p> 
-            Orice user si orice animal, respectiv orice detaliu despre acestea, vor fi stocate sub forma de obiecte separate. Din moment ce nu exista tabele, nu vor exista generalizari/abstractizari asupra animalelor.
+            Orice user si orice animal, respectiv orice detaliu despre acestea, vor fi stocate in tabele separate. De asemenea, se mai stocheaza intr-un alt tabel si sugestiile provenite de la useri.
           </p>
 
-          <figure typeof="schema:SoftwareSourceCode">
-            <meta property="schema:bash" content="bash">
-            <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-bash">
-hmset lion:1 name "Lion" scientific_name "Panthera Leo" origin "Africa" class "Mammalia" family "Felidae" species "Panthera Leo" status "vulnerable"
-OK
- 
-hmset elephant:2 name "Elephant" scientific_name "Loxodonta" origin "Africa" class "Mammalia" family "Elephantidae" species "Loxodonta africana" status "vulnerable"
-OK
+          <h3> Tabelele bazei de date</h3>
+          <h4> Animals </h4>
+          <p> Tabela contine 20 de campuri, dupa cum urmeaza: ID, link (picture path), popular_name, scientific_name, category, family, description, origin, status, climate, habitate, dangerousness, special_prop, related_species, enemies, nourishment, breeding, fur, fur_color, training. Aceasta tabela este indexata pe campul ID.</p>
 
-sadd status:vulnerable 1 2 //indexam ceea ce vrem sa cautam
-sadd origin:Africa 1 2
-sadd name:Lion 1 
+          <h4> Users </h4>
+          <p>Tabela contine 8 campuri: id, name, username, password, email, phone, city, birthdate.</p>
 
-// cautare multi-criteriala
-sinter status:vulnerable origin:Africa // se va returna: 1 2
+          <h4> Suggestions </h4>
+          <p> Tabela contine 4 campuri: id, name, email, subject.</p>
+          <BR>
 
-// cautare simpla, cu un singur parametru
-hget lion:1 name // returneaza "Lion"
-            </code></pre>
-
-            <figcaption>
-              Un exemplu de utilizare in linia de comanda (redis-cli).
-            </figcaption>
-          </figure>
-
-          <figure typeof="schema:SoftwareSourceCode">
-            <meta property="schema:PHP" content="PHP">
-            <pre property="schema:programmingLanguage" typeof="schema:Language"><code class="language-PHP">
-&lt;?php 
-  $redis->hmset("lion", array(
-  "name" => "Lion",
-  "scientific_name" => "Panthera Leo",
-  "origin" => "Africa",
-  "class" => "Mammalia",
-  "family" => "Felidae",
-  "species" => "Panthera Leo",
-  "status" => "vulnerable"));
-
-  $lion = $redis->hgetall("lion");
-  echo "All info about lion";
-  var_dump($lion);
-
-  $redis->hdel("lion:1", "scientific_name");
-?>
-            </code></pre>
-
-            <figcaption>
-              Un exemplu de utilizare in PHP.
-            </figcaption>
-          </figure>
+          <p> Este de specificat ca nu exista corelari intre tabelele din baza de date, intrucat nu a fost nevoie. </p>
         </section>
 
         <section id="tasks">
           <h3>Asignarea task-urilor</h3>
         <ol>
           <li>Front-end:</li>
-          <p>Implementarea paginilor (HTML, CSS): Rares Munteanu, Dan Dragomirescu</p>
-          <p>Mockups: Anca Dorneanu</p>
+          <p>Implementarea paginilor (HTML, CSS, Javascript, AJAX): Anca Dorneanu, Rares Munteanu, Dan Dragomirescu</p>
 
           <li>Back-end:</li>
-          <p>Cautare si implementare arhitectura baza de date (Redis): Anca Dorneanu</p>
+          <p>Cautare si implementare arhitectura baza de date: Anca Dorneanu, Rares Munteanu</p>
+          <p>Implementare functionalitate import/export: Dan Dragomirescu</p>
+          <p>Cautare/filtrare: Anca Dorneanu</p>
+          <p>Afisare modal-uri si creare pagini de afisare: Rares Munteanu</p>
 
           <li>Documentatie</li>
           <p>Crearea documentatiei utilizand Scholarly HTML: Anca Dorneanu, Dan Dragomirescu</p>
