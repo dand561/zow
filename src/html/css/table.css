@@ -2,6 +2,8 @@ table {
 	color: #ff2222;
 
 }
-td {
+tr, td{
 	color:#fff222;
+	width:150px;
+	border-right:1px solid black;
 }
