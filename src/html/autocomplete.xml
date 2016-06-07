@@ -1,0 +1,43 @@
+<pages>
+
+   <link>
+      <title>Lion</title>
+      <url>http://www.tutorialspoint.com/android/index.htm</url>
+   </link>
+
+   <link>
+      <title>Jaguar</title>
+      <url>http://www.tutorialspoint.com/java/index.htm</url>
+   </link>
+
+   <link>
+      <title>Cameleon </title>
+      <url>http://www.tutorialspoint.com/css/index.htm</url>
+   </link>
+
+   <link>
+      <title>Cobra</title>
+      <url>http://www.tutorialspoint.com/angularjs/index.htm </url>
+   </link>
+
+   <link>
+      <title>Crocodile</title>
+      <url>http://www.tutorialspoint.com/hadoop/index.htm </url>
+   </link>
+
+   <link>
+      <title>Flamingo</title>
+      <url>http://www.tutorialspoint.com/swift/index.htm </url>
+   </link>
+
+   <link>
+      <title>Fox</title>
+      <url>http://www.tutorialspoint.com/ruby/index.htm </url>
+   </link>
+
+   <link>
+      <title>Koala</title>
+      <url>http://www.tutorialspoint.com/nodejs/index.htm </url>
+   </link>
+
+</pages>

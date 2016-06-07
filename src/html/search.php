@@ -37,11 +37,12 @@
 
     <nav id="navigation" class="clearfix">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="search.html">Search</a></li>
-        <li><a href="categories.html">Categories</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li style="float:right"><a class="right-login" href="login.html">Login</a></li>
+        <?php session_start()?>
+        <li><a href="index.php" <?php $_SESSION['loggedin']='true'; ?>>Home</a></li>
+        <li><a href="search.php">Search</a></li>
+        <li><a href="categories.php">Categories</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li style="float:right"><a class="right-login" href="logout.php" > Logout </a></li>
       </ul>
     </nav>
 
