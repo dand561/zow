@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/contact.css"/>
+  </head>
+
+  <body bgcolor="#E3E3E3">
+
+    <nav id="navigation" class="clearfix">
+        <ul>
+            <?php session_start()?>
+        <li><a href="index.php" <?php $_SESSION['loggedin']='true'; ?>>Home</a></li>
+        <li><a href="search.php">Search</a></li>
+        <li><a href="categories.php">Categories</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li style="float:right"><a class="right-login" href="logout.php" > Logout </a></li>
+        </ul>
+    </nav>
+
+    <div class="contact">
+        <h2>Volunteering</h2>
+            <article>
+                We are a team of young, joyful people. Each one of us loves animals and understands what responsability is, so we are trying to do our best in order to keep them all healthy and happy.
+                If you love animals, you want to help or you just want to see what's happening on the other side, don't hesitate to contact us!
+            </article>
+
+        <h2>Donations</h2>
+            <article>
+                Because we are deeply committed to our community and proud to support it, we gladly accept your donations. All donations will go to children from poor countries in Africa, so they can benefit of education. 
+                <br><br>
+                Only non-profit organizations will be considered. The following groups are not eligible to receive complimentary pass donations: individuals or individual families, religious groups utilizing the donation for activities or events that are not tied directly to a school, and political parties.
+                <br><br>
+                <form action="index2.php" method="get">
+                    <input type="submit" value="Donate">
+                </form>
+                
+            </article>
+
+        <h2> Contact </h2>
+            <ul>
+                <li>Phone: (+40) 728 121 729</li>
+                <li>Email: <a href="mailto: donations@zow.com">donations@zow.com</a></li>
+                <li>Address: 13 Zoo Street, Iasi, IS, 700004</li>
+            </ul> 
+    </div>
+
+    <div class="form-style-5">
+      <form action="../application/add_suggestion.php" method="post"/>
+        
+        <fieldset>
+            <legend> Suggestions </legend>
+
+            <label for="name"> Name </label> 
+            <input type="text" name="name" required="required" placeholder="What's your name?"/> 
+
+            <label for="email"> E-mail </label> 
+
+            <input type="email" name="email" pattern="[^ @]*@[^ @]*" placeholder="We promise we hate spam as much as you do!" required="required"/>
+
+            <label for="subject"> Subject </label>
+            <textarea name="subject" placeholder="Share your thoughts with us! :)"/></textarea>
+        </fieldset>
+        <input type="submit" value="Submit" />
+      
+      </form>
+    </div>
+
+    <footer>
+        <div id="copyright">
+            <p> Copyright &#9400; 2016 &bull; All rights reserved </p>
+        </div>
+
+        <div id="links">
+            <a href="https://github.com/dand561/zow">ZoW on Github</a> &laquo; 
+            <a href="http://www.info.uaic.ro/bin/Main/" >Faculty of Computer Science</a> &raquo;
+            <a href="http://profs.info.uaic.ro/~busaco/teach/courses/web/">Web technologies</a>
+        </div>
+    </footer>
+    
+  </body>
+</html>
